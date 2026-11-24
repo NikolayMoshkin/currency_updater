@@ -49,9 +49,9 @@ func (sc *SourceChannelFiller) InitSources(cnf config.SourceConfig, tick time.Du
 
 func (sc *SourceChannelFiller) init(cnf config.SourceConfig) []source.Source {
 	return []source.Source{
-		source.NewDummySource(),
-		source.NewErrorSource(),
+		// source.NewDummySource(),
+		// source.NewErrorSource(),
 		source.NewFrankfurterSource(sc.ctx, sc.client),
-		source.NewWithCredSource(cnf.SourceWithCredsApiKey),
+		// source.NewWithCredSource(cnf.SourceWithCredsApiKey),
 	}
 }

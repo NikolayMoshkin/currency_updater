@@ -5,8 +5,13 @@ import (
 )
 
 type Config struct {
+	AppConfig    AppConfig
 	DBConfig     DBConfig
 	SourceConfig SourceConfig
+}
+
+type AppConfig struct {
+	UpdatePeriodSec int `env:"UPDATE_PERIOD_SEC" envDefault:"60"`
 }
 
 type DBConfig struct {

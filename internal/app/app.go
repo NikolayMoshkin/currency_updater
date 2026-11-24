@@ -12,8 +12,6 @@ import (
 	"time"
 )
 
-const DEFAULT_TICKER = 5 * time.Second // период опроса источников данных
-
 type App struct {
 	cnf *config.Config
 }
@@ -30,7 +28,7 @@ func (a *App) Run() {
 	defer stop()
 
 	sf := service.NewSourceChannelFiller(sysContext, &http.Client{})
-	sourceCh := sf.InitSources(a.cnf.SourceConfig, DEFAULT_TICKER)
+	sourceCh := sf.InitSources(a.cnf.SourceConfig, time.Duration(a.cnf.AppConfig.UpdatePeriodSec)*time.Second)
 
 	mh := service.NewMessageHandler(sysContext)
 	if err := mh.Init(a.cnf.DBConfig); err != nil {
